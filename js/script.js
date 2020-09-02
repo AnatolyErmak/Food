@@ -323,7 +323,67 @@ window.addEventListener("DOMContentLoaded", () => {
 
     //API -  набор данных и возможностей которые дают готовые решение
 
-/*     fetch('http://localhost:3000/menu')
-        .then(data => data.json())
-        .then(res => console.log(res));   */ 
+    // слайдер
+
+    //получить все элементы
+    //получить индекс слайдера , при клике индекс меняется
+    //функция которая занимается показом нашего слайда и скрытие других слайдов
+    //внутри себя эта функция должна иметь условия , конец или начало
+    //когда функция создана вешаем обработчики события на стрелки делаем что нам нужно
+    //при создании должна быть нумерация 
+
+    const slides = document.querySelectorAll('.offer__slide');
+    const prev = document.querySelector('.offer__slider-prev');
+    const next = document.querySelector('.offer__slider-next');
+    const total = document.querySelector('#total');
+    const current = document.querySelector('#current');
+
+    let slideIndex = 1; 
+
+    // проинацилизуруем наш слайдер
+    showSlides(slideIndex);
+
+    // подставляем 0 перед цифрой
+
+    if (slides.lenght < 10) {
+        total.textContent = `0${slides.length}`; 
+    } else {
+        total.textContent = slides.length;
+    }
+
+    function showSlides(n) {
+        if (n > slides.length) { //когда из первого слайда перемешается в последний, ушли в правую границу
+            slideIndex = 1; // то перемещаемся в надл
+        } 
+
+        if (n < 1) { // ушли в левую границу
+            slideIndex = slides.length; // перемещаемся в конец
+        }
+
+        // скрываем и перебираем
+
+        slides.forEach(item => item.classList.add('hide'));
+
+        slides[slideIndex - 1].classList.remove('hide');
+        slides[slideIndex - 1].classList.add('show');
+
+        if (slides.lenght < 10) {
+            current.textContent = `0${slideIndex}`; 
+        } else {
+            current.textContent = slideIndex;
+        }
+    }
+
+    function plusSlides(n) {
+        showSlides(slideIndex += n)
+    }
+
+    prev.addEventListener('click', ()=> {
+        plusSlides(-1);
+    });
+
+    next.addEventListener('click', ()=> {
+        plusSlides(+1);
+    });
+
 });
