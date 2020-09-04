@@ -6,16 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/AnatolyErmak/Food.git"
-  },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/AnatolyErmak/Food/issues"
-  },
-  "homepage": "https://github.com/AnatolyErmak/Food#readme",
   "devDependencies": {
     "json-server": "^0.16.1"
   }
